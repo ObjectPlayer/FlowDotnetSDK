@@ -15,7 +15,7 @@ namespace Decoding
 {
     public class CadenceDecoding
     {
-        string[] numberTypes = { "Int", "UInt", "Int8", "UInt8", "Int16", "UInt16", "Int32", "UInt32", "Int64", "UInt64", "Int128", "UInt128", "Int256", "UInt256", "Word8", "Word16", "Word32", "Word64", "Fix64", "UFix64" };
+        string[] numberTypes = { "Int", "UInt", "Int8", "UInt8", "Int16", "UInt16", "Int32", "UInt32", "Int64", "UInt64", "Int128", "UInt128", "Int256", "UInt256", "Word8", "Word16", "Word32", "Word64", "Word128", "Word256", "Fix64", "UFix64" };
 
         string[] compositeTypes = { "Struct", "Resource" };
 

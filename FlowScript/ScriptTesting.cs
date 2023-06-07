@@ -492,5 +492,164 @@ namespace ScriptTesting
 
         }
 
+        public async Task testWord8Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.Word8,"255")
+            };
+
+            var script = @"
+                    pub fun main(num: Word8) : Word8{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"Word8: {value}");
+
+        }
+
+        public async Task testWord16Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.Word16,"65535")
+            };
+
+            var script = @"
+                    pub fun main(num: Word16) : Word16{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"Word16: {value}");
+
+        }
+
+        public async Task testWord32Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.Word32,"4294967295")
+            };
+
+            var script = @"
+                    pub fun main(num: Word32) : Word32{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"Word32: {value}");
+
+        }
+
+        public async Task testWord64Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.Word64,"18446744073709551615")
+            };
+
+            var script = @"
+                    pub fun main(num: Word64) : Word64{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"Word64: {value}");
+
+        }
+
+        //Currently not supported by flow-dotnet-sdk
+        // public async Task testWord128Type()
+        // {
+
+        //     var arguments = new List<ICadence>
+        //     {
+        //         new CadenceNumber(CadenceNumberType.Word128,"340282366920938463463374607431768211455")
+        //     };
+
+        //     var script = @"
+        //             pub fun main(num: Word128) : Word128{
+        //                 return num
+        //             }
+        //         ";
+
+        //     var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+        //     {
+        //         Script = script,
+        //         Arguments = arguments
+        //     });
+
+        //     CadenceDecoding cadenceEncoding = new CadenceDecoding();
+        //     var value = cadenceEncoding.decode(result);
+        //     Console.WriteLine($"Word128: {value}");
+
+        // }
+
+
+        // //Currently not supported by flow-dotnet-sdk
+        // public async Task testWord256Type()
+        // {
+
+        //     var arguments = new List<ICadence>
+        //     {
+        //         new CadenceNumber(CadenceNumberType.Word256,"115792089237316195423570985008687907853269984665640564039457584007913129639935")
+        //     };
+
+        //     var script = @"
+        //             pub fun main(num: Word256) : Word256{
+        //                 return num
+        //             }
+        //         ";
+
+        //     var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+        //     {
+        //         Script = script,
+        //         Arguments = arguments
+        //     });
+
+        //     CadenceDecoding cadenceEncoding = new CadenceDecoding();
+        //     var value = cadenceEncoding.decode(result);
+        //     Console.WriteLine($"Word256: {value}");
+
+        // }
+
     }
 }
