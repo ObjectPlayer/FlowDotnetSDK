@@ -232,5 +232,57 @@ namespace ScriptTesting
 
         }
 
+        public async Task testInt16Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.Int16,"-32768")
+            };
+
+            var script = @"
+                    pub fun main(num: Int16) : Int16{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"Int16: {value}");
+
+        }
+
+        public async Task testUInt16Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.UInt16,"65535")
+            };
+
+            var script = @"
+                    pub fun main(num: UInt16) : UInt16{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"UInt16: {value}");
+
+        }
+
     }
 }

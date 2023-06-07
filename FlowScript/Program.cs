@@ -12,6 +12,8 @@ namespace FlowSdkTesting
             await flowScriptTesting.testUIntType();
             await flowScriptTesting.testInt8Type();
             await flowScriptTesting.testUInt8Type();
+            await flowScriptTesting.testInt16Type();
+            await flowScriptTesting.testUInt16Type();
 
         }
     }
