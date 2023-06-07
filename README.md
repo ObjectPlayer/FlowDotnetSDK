@@ -22,15 +22,13 @@ This repository will on flow-dotnet-sdk and explain implementation layer of flow
 
   #### For Ubutu and VS-Code
 
-      - add binary file path in launch.json e.g:
-      ```
+        add binary file path in launch.json e.g:
         "configurations": [
           {
             ...
             "program": "${workspaceFolder}/FlowScript/bin/Debug/net6.0/FlowScript.dll",
             ...
           }
-      ```
 
   #### Create build
 
