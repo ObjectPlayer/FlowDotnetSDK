@@ -877,5 +877,103 @@ namespace ScriptTesting
 
         }
 
+        public async Task testOptionalType()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceOptional(
+                    null
+                )
+            };
+
+
+            var script = @"
+                    pub fun main(value: Int?) : Int?{
+                        return value
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            if (value != null)
+                Console.WriteLine($"Optional: {value}");
+            else
+                Console.WriteLine("Optional: Null");
+
+
+
+        }
+
+        public async Task testCompositeType()
+        {
+
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceAddress("0xa725f0c0b625480e")
+            };
+
+
+            var script = @"
+                    import NonFungibleToken from 0x631e88ae7f1d7c20
+                    import BloomlyNFT from 0xee6decf3519d7d3b
+                    import MetadataViews from 0x631e88ae7f1d7c20
+
+                    pub fun main(address: Address): &NonFungibleToken.NFT {
+                        let account = getAccount(address)
+
+                        let collection = account.getCapability(BloomlyNFT.CollectionPublicPath)
+                                            .borrow<&{BloomlyNFT.BloomlyNFTCollectionPublic}>()
+                                            ??panic(" + "\" ObjectPlayer \" ) \n" +
+                        @"
+                        let nftId = collection.getIDs()[6]
+                        let nft = collection.borrowNFT(id: nftId)!
+                        return nft
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"Composite-Type: {value}");
+
+            foreach (var v in value)
+            {
+                Console.WriteLine($"{v.Key} : {v.Value}");
+
+                if (v.Value is Dictionary<object, object>)
+                {
+                    foreach (var v2 in v.Value)
+                    {
+                        Console.WriteLine($"{v2.Key} : {v2.Value}");
+
+                        if (v2.Value is Dictionary<object, object>)
+                        {
+                            foreach (var v3 in v2.Value)
+                            {
+                                Console.WriteLine($"{v3.Key} : {v3.Value}");
+                            }
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
     }
 }

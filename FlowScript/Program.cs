@@ -42,8 +42,14 @@ namespace FlowSdkTesting
             // //Testing Array
             // await flowScriptTesting.testArrayType();
 
-            //Testing Dictionary
-            await flowScriptTesting.testDictionaryType();
+            // //Testing Dictionary
+            // await flowScriptTesting.testDictionaryType();
+
+            // //Testing Optional
+            // await flowScriptTesting.testOptionalType();
+
+            // Testing Composite-Type
+            await flowScriptTesting.testCompositeType();
 
         }
     }
