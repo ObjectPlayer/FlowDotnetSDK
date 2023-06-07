@@ -284,5 +284,57 @@ namespace ScriptTesting
 
         }
 
+        public async Task testInt32Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.Int32,"-2147483648")
+            };
+
+            var script = @"
+                    pub fun main(num: Int32) : Int32{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"Int32: {value}");
+
+        }
+
+        public async Task testUInt32Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.UInt32,"4294967295")
+            };
+
+            var script = @"
+                    pub fun main(num: UInt32) : UInt32{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"UInt32: {value}");
+
+        }
+
     }
 }
