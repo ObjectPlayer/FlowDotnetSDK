@@ -336,5 +336,161 @@ namespace ScriptTesting
 
         }
 
+        public async Task testInt64Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.Int64,"-9223372036854775808")
+            };
+
+            var script = @"
+                    pub fun main(num: Int64) : Int64{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"Int64: {value}");
+
+        }
+
+        public async Task testUInt64Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.UInt64,"18446744073709551615")
+            };
+
+            var script = @"
+                    pub fun main(num: UInt64) : UInt64{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"UInt64: {value}");
+
+        }
+
+        public async Task testInt128Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.Int128,"-9223372036854775808")
+            };
+
+            var script = @"
+                    pub fun main(num: Int128) : Int128{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"Int128: {value}");
+
+        }
+
+        public async Task testUInt128Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.UInt128,"18446744073709551615")
+            };
+
+            var script = @"
+                    pub fun main(num: UInt128) : UInt128{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"UInt128: {value}");
+
+        }
+
+        public async Task testInt256Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.Int256,"-9223372036854775808")
+            };
+
+            var script = @"
+                    pub fun main(num: Int256) : Int256{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"Int256: {value}");
+
+        }
+
+        public async Task testUInt256Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.UInt256,"18446744073709551615")
+            };
+
+            var script = @"
+                    pub fun main(num: UInt256) : UInt256{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"UInt256: {value}");
+
+        }
+
     }
 }
