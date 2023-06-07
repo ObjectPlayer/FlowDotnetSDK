@@ -132,3 +132,5 @@ dist
 # bin files
 FlowScript/bin/
 FlowScript/obj/
+.vs/FlowScript
+.vscode
