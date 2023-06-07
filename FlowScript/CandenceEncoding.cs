@@ -23,7 +23,7 @@ namespace Decoding
         {
 
             //Current Limitation 
-            //Never, Type, Capability, Path, 
+            //Never, Capability 
             string type = getType(value);
 
             //Boolean Type

@@ -755,5 +755,127 @@ namespace ScriptTesting
 
         }
 
+        public async Task testStringType()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceString("ObjectPlayer")
+            };
+
+            var script = @"
+                    pub fun main(value: String) : String{
+                        return value
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"String: {value}");
+
+        }
+
+        public async Task testArrayType()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceArray(
+                    new List<ICadence>{
+                        new CadenceBool(true),
+                        new CadenceNumber(CadenceNumberType.Int,"-38"),
+                        new CadenceAddress("0xa725f0c0b625480e"),
+                        new CadenceString("ObjectPlayer")
+                    }
+                )
+
+            };
+
+
+            var script = @"
+                    pub fun main(value: [AnyStruct]) : [AnyStruct]{
+                        return value
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"Array: {value}");
+            foreach (var v in value)
+            {
+                Console.WriteLine($"{v}");
+            }
+
+
+        }
+
+        public async Task testDictionaryType()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceDictionary(
+                    new List<CadenceDictionaryKeyValue>{
+                        new ()
+                            {
+                                Key = new CadenceString("Bool"),
+                                Value = new CadenceBool(true)
+                            },
+                        new ()
+                            {
+                                Key = new CadenceString("Number"),
+                                Value = new CadenceNumber(CadenceNumberType.Int,"-38")
+                            },
+                        new ()
+                            {
+                                Key = new CadenceString("Address"),
+                                Value = new CadenceAddress("0xa725f0c0b625480e")
+                            },
+                        new ()
+                            {
+                                Key = new CadenceString("String"),
+                                Value = new CadenceString("ObjectPlayer")
+                            }
+                    }
+                )
+
+            };
+
+
+            var script = @"
+                    pub fun main(value: {String:AnyStruct}) : {String:AnyStruct}{
+                        return value
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"Dictionary: {value}");
+            foreach (var v in value)
+            {
+                Console.WriteLine($"{v.Key} : {v.Value}");
+            }
+
+
+        }
+
     }
 }
