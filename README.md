@@ -34,16 +34,8 @@ This repository will on flow-dotnet-sdk and explain implementation layer of flow
 
   #### Create build
 
-        ```
-            dotnet build
-        ```
+        dotnet build
 
   #### Run Application
 
-        ```
-            dotnet run
-        ```
-
-```
-
-```
+        dotnet run
