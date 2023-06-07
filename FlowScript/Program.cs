@@ -26,6 +26,8 @@ namespace FlowSdkTesting
             await flowScriptTesting.testWord16Type();
             await flowScriptTesting.testWord32Type();
             await flowScriptTesting.testWord64Type();
+            await flowScriptTesting.testFix64Type();
+            await flowScriptTesting.testUFix64Type();
 
         }
     }

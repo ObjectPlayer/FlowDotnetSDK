@@ -651,5 +651,58 @@ namespace ScriptTesting
 
         // }
 
+        public async Task testFix64Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.Fix64,"-92233720368.54775808")
+            };
+
+            var script = @"
+                    pub fun main(num: Fix64) : Fix64{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"Fix64: {value}");
+
+        }
+
+        public async Task testUFix64Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.UFix64,"184467440737.09551615")
+            };
+
+            var script = @"
+                    pub fun main(num: UFix64) : UFix64{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"UFix64: {value}");
+
+        }
+
+
     }
 }
