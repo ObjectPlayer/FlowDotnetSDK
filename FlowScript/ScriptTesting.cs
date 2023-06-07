@@ -128,6 +128,32 @@ namespace ScriptTesting
         // }
 
 
+        public async Task testBooleanType()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceBool(true)
+            };
+
+            var script = @"
+                    pub fun main(value: Bool) : Bool{
+                        return value
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"Bool: {value}");
+
+        }
+
         public async Task testIntType()
         {
 
