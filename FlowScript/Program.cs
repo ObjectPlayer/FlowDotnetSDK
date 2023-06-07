@@ -1,6 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System;
-using ScriptTesting;
+﻿using ScriptTesting;
 
 namespace FlowSdkTesting
 {
@@ -9,6 +7,7 @@ namespace FlowSdkTesting
         static async Task Main(string[] args)
         {
             FlowScriptTesting flowScriptTesting = new FlowScriptTesting();
+
             await flowScriptTesting.testIntType();
         }
     }

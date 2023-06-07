@@ -4,6 +4,13 @@ using Flow.Net.Sdk.Core;
 using Flow.Net.Sdk.Core.Cadence;
 using Flow.Net.Sdk.Core.Models;
 
+
+/***
+Author: ObjectPlayer
+Email: ObjectPLayer@gmail.com
+Description: This CadenceDecoding class is implemented to simplify Cadence object decoding created by the flow-dotnet-sdk builtin modal
+***/
+
 namespace Decoding
 {
     public class CadenceDecoding
