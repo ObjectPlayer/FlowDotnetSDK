@@ -729,6 +729,31 @@ namespace ScriptTesting
 
         }
 
+        public async Task testAddressType()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceAddress("0xa725f0c0b625480e")
+            };
+
+            var script = @"
+                    pub fun main(value: Address) : Address{
+                        return value
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"Address: {value}");
+
+        }
 
     }
 }

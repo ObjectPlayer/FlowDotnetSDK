@@ -33,6 +33,11 @@ namespace FlowSdkTesting
             await flowScriptTesting.testFix64Type();
             await flowScriptTesting.testUFix64Type();
 
+            //Testing Address
+            await flowScriptTesting.testAddressType();
+
+
+
         }
     }
 }
