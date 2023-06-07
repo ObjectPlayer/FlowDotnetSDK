@@ -133,7 +133,7 @@ namespace ScriptTesting
 
             var arguments = new List<ICadence>
             {
-                new CadenceNumber(CadenceNumberType.Int,"38")
+                new CadenceNumber(CadenceNumberType.Int,"-38")
             };
 
             var script = @"
@@ -150,8 +150,87 @@ namespace ScriptTesting
 
             CadenceDecoding cadenceEncoding = new CadenceDecoding();
             var value = cadenceEncoding.decode(result);
-            Console.WriteLine(value);
+            Console.WriteLine($"Int: {value}");
 
         }
+
+        public async Task testUIntType()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.UInt,"38")
+            };
+
+            var script = @"
+                    pub fun main(num: UInt) : UInt{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"UInt: {value}");
+
+        }
+
+        public async Task testInt8Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.Int8,"-128")
+            };
+
+            var script = @"
+                    pub fun main(num: Int8) : Int8{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"Int8: {value}");
+
+        }
+
+        public async Task testUInt8Type()
+        {
+
+            var arguments = new List<ICadence>
+            {
+                new CadenceNumber(CadenceNumberType.UInt8,"255")
+            };
+
+            var script = @"
+                    pub fun main(num: UInt8) : UInt8{
+                        return num
+                    }
+                ";
+
+            var result = await _flowClient.ExecuteScriptAtLatestBlockAsync(new FlowScript
+            {
+                Script = script,
+                Arguments = arguments
+            });
+
+            CadenceDecoding cadenceEncoding = new CadenceDecoding();
+            var value = cadenceEncoding.decode(result);
+            Console.WriteLine($"UInt8: {value}");
+
+        }
+
     }
 }

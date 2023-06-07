@@ -9,6 +9,10 @@ namespace FlowSdkTesting
             FlowScriptTesting flowScriptTesting = new FlowScriptTesting();
 
             await flowScriptTesting.testIntType();
+            await flowScriptTesting.testUIntType();
+            await flowScriptTesting.testInt8Type();
+            await flowScriptTesting.testUInt8Type();
+
         }
     }
 }
