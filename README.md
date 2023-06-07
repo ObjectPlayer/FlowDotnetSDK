@@ -1,6 +1,6 @@
-# FlowDotnetSDK
+# FlowDotnetSDKImplementation
 
-This repository will on flow-dotnet-sdk and explain implementation layer of flow-dotnet-sdk
+This repository is built on flow-dotnet-sdk and explain implementation layer of flow-dotnet-sdk
 
 ## ✨ Getting Started
 
