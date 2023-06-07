@@ -48,7 +48,7 @@ namespace FlowSdkTesting
             //Testing Optional
             await flowScriptTesting.testOptionalType();
 
-            // Testing Composite-Type
+            // Testing Composite-Type e.g: Struct, Resource
             await flowScriptTesting.testCompositeType();
 
         }
