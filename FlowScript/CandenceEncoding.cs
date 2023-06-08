@@ -89,9 +89,9 @@ namespace Decoding
         {
             return value.As<CadenceBool>().Value;
         }
-        public dynamic resolveNumber(ICadence value)
+        public Decimal resolveNumber(ICadence value)
         {
-            return value.As<CadenceNumber>().Value;
+            return Convert.ToDecimal(value.As<CadenceNumber>().Value);
         }
 
         public string resolveAddress(ICadence value)
@@ -104,7 +104,7 @@ namespace Decoding
             return value.As<CadenceString>().Value;
         }
 
-        public dynamic resolveArray(ICadence value)
+        public object[] resolveArray(ICadence value)
         {
             IList<ICadence> values = value.As<CadenceArray>().Value;
             dynamic result = new dynamic[values.Count];
@@ -117,7 +117,7 @@ namespace Decoding
             return result;
         }
 
-        public dynamic resolveDictionary(ICadence cadenceObject)
+        public Dictionary<object, object> resolveDictionary(ICadence cadenceObject)
         {
             IList<CadenceDictionaryKeyValue> values = cadenceObject.As<CadenceDictionary>().Value;
 
@@ -142,7 +142,7 @@ namespace Decoding
             ICadence optionalValue = cadenceObject.As<CadenceOptional>().Value;
             return optionalValue == null ? null : decode(optionalValue);
         }
-        public dynamic resolveLink(ICadence cadenceObject)
+        public Dictionary<object, object> resolveLink(ICadence cadenceObject)
         {
             CadenceLinkValue linkValue = cadenceObject.As<CadenceLink>().Value;
             Dictionary<object, object> result = new Dictionary<object, object>();
@@ -151,7 +151,7 @@ namespace Decoding
             return result;
         }
 
-        public dynamic resolvePath(ICadence cadenceObject)
+        public Dictionary<object, object> resolvePath(ICadence cadenceObject)
         {
             CadencePathValue pathValue = cadenceObject.As<CadencePath>().Value;
             Dictionary<object, object> result = new Dictionary<object, object>();
@@ -160,7 +160,7 @@ namespace Decoding
             return result;
         }
 
-        public dynamic resolveTypeValue(ICadence cadenceObject)
+        public Dictionary<object, object> resolveTypeValue(ICadence cadenceObject)
         {
             CadenceTypeValueValue typeValue = cadenceObject.As<CadenceTypeValue>().Value;
             Dictionary<object, object> result = new Dictionary<object, object>();
@@ -168,7 +168,7 @@ namespace Decoding
             return result;
         }
 
-        public dynamic resolveCompositeType(ICadence cadenceObject)
+        public Dictionary<object, object> resolveCompositeType(ICadence cadenceObject)
         {
             IEnumerable<CadenceCompositeItemValue> values = cadenceObject.As<CadenceComposite>().Value.Fields;
 
